@@ -1,6 +1,6 @@
 // JavaScript for School Website Functionality
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functionality
     initNavbar();
     initSmoothScrolling();
@@ -10,23 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //footer and navbar
 function includeHTML(file, elementId) {
-    fetch(file)
-      .then(response => response.text())
-      .then(data => document.getElementById(elementId).innerHTML = data);
-  }
+    const element = document.getElementById(elementId);
+    if (!element) return;
 
-  includeHTML('/ppmhsskottukkara/common/navbar.html', 'navbar-placeholder');
-  includeHTML('/ppmhsskottukkara/common/footer.html', 'footer-placeholder');
+    fetch(file)
+        .then(response => response.text())
+        .then(data => element.innerHTML = data)
+        .catch(err => console.log('Error loading include:', err));
+}
+
+includeHTML('/ppmhsskottukkara/common/navbar.html', 'navbar-placeholder');
+includeHTML('/ppmhsskottukkara/common/footer.html', 'footer-placeholder');
 
 // Navbar functionality
 function initNavbar() {
     const navbar = document.getElementById('mainNav');
 
-    
+
     // Close mobile menu when clicking on a link
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (navbarCollapse.classList.contains('show')) {
@@ -40,17 +44,17 @@ function initNavbar() {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -63,18 +67,18 @@ function initSmoothScrolling() {
 // Back to top button functionality
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
-    
+
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 300) {
             backToTopBtn.classList.add('show');
         } else {
             backToTopBtn.classList.remove('show');
         }
     });
-    
+
     // Scroll to top when clicked
-    backToTopBtn.addEventListener('click', function() {
+    backToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -88,18 +92,18 @@ function initAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
-    
+
     // Add fade-in class to elements that should animate
     const animateElements = document.querySelectorAll('.stat-card, .feature-card, .staff-card, .event-card, .gallery-item, .download-card');
-    
+
     animateElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
@@ -109,13 +113,13 @@ function initAnimations() {
 // Gallery image modal functionality
 function initGalleryModal() {
     const galleryItems = document.querySelectorAll('.gallery-item');
-    
+
     galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const img = this.querySelector('.gallery-image');
             const title = this.querySelector('.gallery-overlay h5').textContent;
             const description = this.querySelector('.gallery-overlay p').textContent;
-            
+
             // Create modal (you can enhance this with Bootstrap modal)
             showImageModal(img.src, title, description);
         });
@@ -140,7 +144,7 @@ function showImageModal(src, title, description) {
         justify-content: center;
         cursor: pointer;
     `;
-    
+
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `
@@ -154,28 +158,28 @@ function showImageModal(src, title, description) {
         <h4 style="color: white; margin-top: 1rem;">${title}</h4>
         <p style="color: #ccc;">${description}</p>
     `;
-    
+
     modalBackdrop.appendChild(modalContent);
     document.body.appendChild(modalBackdrop);
-    
+
     // Close modal when clicking backdrop
-    modalBackdrop.addEventListener('click', function(e) {
+    modalBackdrop.addEventListener('click', function (e) {
         if (e.target === modalBackdrop) {
             document.body.removeChild(modalBackdrop);
         }
     });
-    
+
     // Close modal with Escape key
-    const escapeHandler = function(e) {
+    const escapeHandler = function (e) {
         if (e.key === 'Escape') {
             document.body.removeChild(modalBackdrop);
             document.removeEventListener('keydown', escapeHandler);
         }
     };
     document.addEventListener('keydown', escapeHandler);
-    
+
     // Prevent content click from closing modal
-    modalContent.addEventListener('click', function(e) {
+    modalContent.addEventListener('click', function (e) {
         e.stopPropagation();
     });
 }
@@ -183,13 +187,13 @@ function showImageModal(src, title, description) {
 // Download functionality for files
 function initDownloads() {
     const downloadLinks = document.querySelectorAll('.download-card .btn');
-    
+
     downloadLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const fileName = this.closest('.download-card').querySelector('h5').textContent;
-            
+
             // Since these are demo files, show a message
             showAlert(`Download for "${fileName}" would start here. Please replace with actual file links.`, 'info');
         });
@@ -197,20 +201,20 @@ function initDownloads() {
 }
 
 // Initialize additional features when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initGalleryModal();
     initDownloads();
-    
+
     // Add loading animation
     document.body.classList.add('loaded');
 });
 
 // Utility function to format dates
 function formatDate(date) {
-    const options = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     };
     return new Date(date).toLocaleDateString('en-US', options);
 }
@@ -224,7 +228,7 @@ function truncateText(text, maxLength) {
 // Performance optimization: Lazy loading for images
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
+
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -235,23 +239,23 @@ function initLazyLoading() {
             }
         });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
 }
 
 // Search functionality (if needed)
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
-    
+
     if (searchInput) {
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const searchTerm = this.value.toLowerCase();
             const searchableElements = document.querySelectorAll('[data-searchable]');
-            
+
             searchableElements.forEach(element => {
                 const text = element.textContent.toLowerCase();
                 const parent = element.closest('.col-lg-4, .col-md-6, .col-lg-3');
-                
+
                 if (text.includes(searchTerm) || searchTerm === '') {
                     parent.style.display = 'block';
                 } else {
@@ -300,11 +304,11 @@ function initAccessibility() {
         text-decoration: none;
         border-radius: 4px;
     `;
-    
+
     document.body.insertBefore(skipLink, document.body.firstChild);
-    
+
     // Focus management for modals
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
             // Handle tab navigation in modals
             const modal = document.querySelector('.modal-backdrop');
@@ -313,7 +317,7 @@ function initAccessibility() {
                 const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 const firstElement = focusableElements[0];
                 const lastElement = focusableElements[focusableElements.length - 1];
-                
+
                 if (e.shiftKey && document.activeElement === firstElement) {
                     lastElement.focus();
                     e.preventDefault();
@@ -327,16 +331,16 @@ function initAccessibility() {
 }
 
 // Initialize accessibility features
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initAccessibility();
 });
 
 // Error handling for images
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const images = document.querySelectorAll('img');
-    
+
     images.forEach(img => {
-        img.addEventListener('error', function() {
+        img.addEventListener('error', function () {
             // Replace broken images with placeholder
             this.src = 'images/Main/images.jpg';
             this.alt = 'Image not available';
