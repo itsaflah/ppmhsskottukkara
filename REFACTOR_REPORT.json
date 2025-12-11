@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "scanned_files": [
+      "index.html",
+      "about/index.html",
+      "styles.css",
+      "about/about.css",
+      "common/commonstyle.css",
+      "script.js",
+      "common/navbar.html",
+      "common/footer.html"
+    ],
+    "duplicates_found": 5
+  },
+  "duplicates": [
+    {
+      "type": "css",
+      "similarity": "high",
+      "files": [
+        "styles.css",
+        "about/about.css",
+        "common/commonstyle.css"
+      ],
+      "common_blocks": [
+        "root variables",
+        ".navbar styles",
+        "footer styles",
+        ".hero-section styles",
+        ".back-to-top styles"
+      ],
+      "recommendation": "Merge into common/common.css"
+    },
+    {
+      "type": "js",
+      "similarity": "exact",
+      "files": [
+        "script.js"
+      ],
+      "notes": "File is referenced by multiple pages. Logic for loading header/footer is centralized here.",
+      "recommendation": "Move to common/common.js"
+    },
+    {
+      "type": "html_structure",
+      "similarity": "pattern",
+      "files": [
+        "index.html",
+        "about/index.html"
+      ],
+      "common_blocks": [
+        "<div id='navbar-placeholder'></div>",
+        "<div id='footer-placeholder'></div>"
+      ],
+      "notes": "Current implementation uses client-side JS injection.",
+      "recommendation": "Replace placeholders with '<!-- include: ... -->' markers for build-step assembly."
+    }
+  ]
+}
