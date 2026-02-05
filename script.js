@@ -343,3 +343,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+//form
+function handleSubmit(e) {
+  // Let the form submit to Google
+  setTimeout(() => {
+    alert("✅ Message sent successfully!\nWe will contact you soon.");
+    document.getElementById("contactForm").reset();
+  }, 800);
+}
