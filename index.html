@@ -707,9 +707,9 @@
                         <div class="card-body">
                             <h4 class="mb-4">Send us a Message</h4>
                             <!-- EDIT: This form is non-functional. Replace with actual form handler -->
-                            <form
+                            <form id="contactForm"
                                 action="https://docs.google.com/forms/d/e/1FAIpQLSex3C1yPnUPHnRBGvNNy99jXX5MenRfij5-WMRct-9CcpGnNg/formResponse"
-                                method="POST" target="hidden_iframe">
+                                method="POST" target="hidden_iframe" onsubmit="handleSubmit(event)">
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -749,7 +749,6 @@
                             </form>
 
                             <iframe name="hidden_iframe" style="display:none;"></iframe>
-
 
                         </div>
                     </div>
