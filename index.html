@@ -25,7 +25,7 @@
                             Welcome to PPMHSS KOTTUKKARA
                         </h1>
                         <p class="lead text-white mb-4">
-                           Note: now all information about school is demo not real 
+                            Note: now all information about school is demo not real
                         </p>
                         <!-- <div class="hero-buttons">
                             <a href="#about" class="btn btn-primary btn-lg me-3">Learn More</a>
@@ -707,39 +707,49 @@
                         <div class="card-body">
                             <h4 class="mb-4">Send us a Message</h4>
                             <!-- EDIT: This form is non-functional. Replace with actual form handler -->
-                            <form id="submit-form">
+                            <form
+                                action="https://docs.google.com/forms/d/e/1FAIpQLSex3C1yPnUPHnRBGvNNy99jXX5MenRfij5-WMRct-9CcpGnNg/formResponse"
+                                method="POST" target="hidden_iframe">
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" name="entry.2005620554" required>
                                     </div>
+
                                     <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" name="entry.1045781291" required>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" name="phone" id="phone">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" name="entry.1166974658">
                                     </div>
+
                                     <div class="col-md-6 mb-3">
-                                        <label for="subject" class="form-label">Subject</label>
-                                        <select class="form-control" id="subject" name="subject">
-                                            <option>General Inquiry</option>
-                                            <option>Admission</option>
-                                            <option>Academic</option>
-                                            <option>Other</option>
+                                        <label class="form-label">Subject</label>
+                                        <select class="form-control" name="entry.1065046570" required>
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Admission">Admission</option>
+                                            <option value="Academic">Academic</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" name="message" rows="5"
-                                        required></textarea>
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" name="entry.839337160" rows="5" required></textarea>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary">Send Message</button>
                             </form>
+
+                            <iframe name="hidden_iframe" style="display:none;"></iframe>
+
 
                         </div>
                     </div>
