@@ -34,7 +34,7 @@ body {
   padding: 1rem 0;
 }
 
-.navbar{
+.navbar {
   background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -65,11 +65,16 @@ body {
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.3); /* semi-transparent black */
-  border-radius: 2rem;           /* makes it rounded */
-  padding: 2rem;                 /* optional: adds inner space */
-  backdrop-filter: blur(1px);    /* adds a frosted-glass effect */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* soft shadow */
+  background: rgba(0, 0, 0, 0.3);
+  /* semi-transparent black */
+  border-radius: 2rem;
+  /* makes it rounded */
+  padding: 2rem;
+  /* optional: adds inner space */
+  backdrop-filter: blur(1px);
+  /* adds a frosted-glass effect */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* soft shadow */
 }
 
 .hero-buttons .btn {
@@ -371,12 +376,14 @@ footer {
   background: var(--dark-color) !important;
 }
 
-footer h5, footer h6 {
+footer h5,
+footer h6 {
   color: var(--white);
   margin-bottom: 1rem;
 }
 
-footer p, footer li {
+footer p,
+footer li {
   color: #adb5bd;
 }
 
@@ -436,40 +443,40 @@ footer a:hover {
   .section-title {
     font-size: 2rem;
   }
-  
+
   .hero-section h1 {
     font-size: 2.5rem;
   }
-  
+
   .stat-card h3 {
     font-size: 2rem;
   }
-  
+
   .staff-photo {
     width: 120px;
     height: 120px;
   }
-  
+
   .event-date {
     position: static;
     display: inline-block;
     margin-bottom: 1rem;
   }
-  
+
   .contact-item {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .contact-icon {
     margin: 0 auto 1rem auto;
   }
-  
+
   .download-card {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .download-icon {
     margin: 0 0 1rem 0;
   }
@@ -479,21 +486,21 @@ footer a:hover {
   section {
     padding: 3rem 0;
   }
-  
+
   .hero-section {
     text-align: center;
   }
-  
+
   .hero-buttons .btn {
     display: block;
     margin: 0.5rem auto;
     width: 200px;
   }
-  
+
   .navbar-brand {
     font-size: 1.2rem;
   }
-  
+
   .gallery-image {
     height: 200px;
   }
@@ -531,23 +538,90 @@ footer a:hover {
 
 /* Print Styles */
 @media print {
+
   .navbar,
   .back-to-top,
   footer {
     display: none !important;
   }
-  
+
   section {
     padding: 1rem 0;
     page-break-inside: avoid;
   }
-  
+
   .hero-section {
     background: none !important;
     color: var(--dark-color) !important;
   }
-  
+
   .hero-section * {
     color: var(--dark-color) !important;
   }
+}
+
+/*form*/
+.modal-overlay {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  background: #0d6efd;
+  /* Matches your Send Message button */
+  color: white;
+  font-size: 30px;
+  line-height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+}
+
+.modal-card h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-family: sans-serif;
+}
+
+.modal-card p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.btn-close-modal {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-close-modal:hover {
+  background-color: #0b5ed7;
 }
